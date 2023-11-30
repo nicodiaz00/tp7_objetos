@@ -1,5 +1,9 @@
 import { arrayDeObjetos } from "./objetos.js";
 import { pasajes } from "./objetoPasaje.js";
+import { butacas } from "./objetoButacas.js";
+import { autos } from "./vehiculos.js";
+import { arrayAulas } from "./aulas.js";
+import { propiedad } from "./objetoPropiedades.js";
 
 /*
 a) Realiza una función que devuelva todos las cuentas con plazos fijos activos a partir de una
@@ -289,8 +293,301 @@ Realiza una función que permita buscar pasajes de una cierta categoría y que e
 disponibles.
 */
 
+export function categoriaYDisponibilidad(valorCategoria, valorEstado){
+    let largoArray = pasajes.length
+    let pasajesDisponibles =[];
+    for(let i = 0; i < largoArray; i++){
+        let objetoPasaje =pasajes[i];
+        if(objetoPasaje.categoria == valorCategoria && objetoPasaje.estado == valorEstado){
+            pasajesDisponibles.push(objetoPasaje);
+        }
 
+    }
+    return pasajesDisponibles;
+}
 
+// TP PARTE BUTACAS
+
+/*
+a) Realiza una función que devuelva las butacas libres.
+*/
+
+export function butacasLibres(valor){
+    let butacasLibres =[];
+    
+    for(let i = 0; i < butacas.length; i++){
+        let objetoButaca = butacas[i];
+        if(objetoButaca.estado == valor){
+            butacasLibres.push(objetoButaca)
+        }
+    }
+    return butacasLibres
+}
+
+/*
+Realiza una función que devuelva la cantidad de butacas ocupadas.
+*/
+
+export function butacasOcupadas(estado){
+    let butacasOcupadas = [];
+    for(let i=0; i < butacas.length; i++){
+        let objetoButaca = butacas[i];
+        if(objetoButaca.estado == estado){
+            butacasOcupadas.push(objetoButaca)
+        }
+    }
+    return butacasOcupadas;
+}
+
+/*
+Realiza una función que indique la distribución de las butacas ocupadas, es decir, en caso
+que halla la misma cantidad de butacas en cada ubicación, la distribución será
+“homogénea”, de lo contrario será según donde se encuentre mayor cantidad.
+*/
+export function distribucionButaca(estado){
+    let distribcionIzq = 0;
+    let distribucionCentro= 0;
+    let distribucionDerecha =0;
+    let butacasOcupadas =[]
+                
+    for(let i = 0; i < butacas.length; i++){
+        let objetoButaca = butacas[i];
+        if(objetoButaca.estado == estado){
+            butacasOcupadas.push[objetoButaca]
+        }
+    }
+    for(let x = 0; x < butacasOcupadas.length;){
+        let ubicacionButaca = butacasOcupadas[x]
+        if( ubicacionButaca == "izquierda"){
+            distribcionIzq += 1;
+        }else if(ubicacionButaca == "derecha"){
+            distribucionDerecha +=1;
+        }else{
+            distribucionCentro += 1;
+        }
+    }
+    if(distribcionIzq === distribucionDerecha && distribcionIzq=== distribucionCentro){
+        return "distribucion homogenea"
+    }else if(distribcionIzq > distribucionDerecha || distribcionIzq >= distribucionCentro){
+        return "distribucion a la izquierda";
+    }else if(distribucionDerecha > distribcionIzq || distribucionDerecha >= distribucionCentro){
+        return "distrubcion a la derecha"
+    }else{
+        return "distribucion centro"
+    }
+
+}
+
+//Realiza una función que devuelva los autos dado su marca y modelo.
+
+export function marcaYModelo(valorMarca, valorModelo){
+    let autosMyM =[];
+    for(let i =0; i < autos.length; i++){
+        let objetoAuto= autos[i];
+        if(objetoAuto.marca === valorMarca && objetoAuto.modelo === valorModelo){
+            autosMyM.push(objetoAuto)
+        }
+    }
+    if(autosMyM.length===0){
+        return "Ningun vehiculo coincide con los valores "
+    }else{
+        return autosMyM
+    }
+    
+}
+
+//Realiza una función que devuelva los autos según un año de fabricación.
+
+export function anioFabricacion(valorAnio){
+    let autosSegunAnio =[];
+    for(let i=0; i < autos.length; i++){
+        let auto = autos[i];
+        if(auto.anio == valorAnio){
+            autosSegunAnio.push(auto)
+        }
+    }
+    return autosSegunAnio
+}
+//Realiza una función que devuelva los autos según un kilometraje.
+export function autoSegunKilometraje(valorKilometraje){
+    let arrayautosKm = [];
+    for(let i=0; i < autos.length; i++){
+        let autoKm = autos[i];
+        if(autoKm.km >= valorKilometraje){
+            arrayautosKm.push(autoKm)
+        }
+    }
+    return arrayautosKm
+}
+
+//Realiza una función que permita ingresar nuevos vehículos.
+
+export function ingresarAuto(){
+    let variableCorte;
+     variableCorte = Number(prompt("Ingrese 1 para comenzar a agregar vehiculos"));
+    let auto={
+        marca: "",
+        modelo: "",
+        color: "",
+        anio: 0,
+        precio: 0,
+        km: 0,
+        estado: "", // "vendido"
+    }
+    
+    while(variableCorte != 0){
+        auto.marca = prompt("Ingrese la marca");
+        auto.modelo = prompt("ingrese modelo");
+        auto.color=prompt("ingrese color");
+        auto.anio=Number(prompt("Ingrese el año del vehiculo"));
+        auto.precio=Number(prompt("Ingrese valor del vehiculo"));
+        auto.km=Number(prompt("Ingrese Km"));
+        auto.estado=prompt("Ingrese el estado: vendido o disponible");
+        autos.push(auto);
+        variableCorte = Number(prompt("Ingrese 1 para seguir agregando vehiculos o 0 para finalizar"));
+    }
+    
+    return autos;
+    
+}
+
+//
+
+//PARTE AULAS
+//a) Realiza una función que dada un número de alumnos devuelva las aulas disponibles y en que rango horario.
+
+export function aulasDisponibles(numeroAlumnos){
+    let aulasDisponibles =[];
+    let estadoAula =[];
+    let horayAula=[];
+    for(let i=0; i < arrayAulas.length;i++){
+        let aula=arrayAulas[i];
+        if(aula.capacidad >= numeroAlumnos){
+            aulasDisponibles.push(aula);
+        }
+    }
+    for(let x= 0; x< aulasDisponibles.length; x++){
+        let aulas = aulasDisponibles[x];
+        let horariodisponible = aulas.horarios
+        for(let z = 0; z< horariodisponible.length;z++){
+            let aulaDisponible = horariodisponible[z]
+            if(aulaDisponible.estado == "disponible"){
+                estadoAula.push(aulas)
+                break;
+            }
+        }
+    }
+        for(let y= 0; y< estadoAula.length; y++){
+            
+            let aula = estadoAula[y]
+            let horario = aula.horarios
+            for(let a = 0; a < horario.length; a++){
+                let valor = horario[a];
+                let valorhora =valor.hora
+                
+                if(valor.estado == "disponible"){
+                    
+                    
+                    horayAula.push(aula.nombre +" "+ valorhora)
+                    
+                }
+            }
+        }
+    return horayAula   
+    }
+    
+    //PARTE PROPIEDADES:
+    //Realiza una función que liste todas las propiedades tipo casa (devuelve la lista).
+
+    export function propiedadCasa(valor){
+        let arrayCasa=[];
+        for(let i= 0; i < propiedad.length; i++){
+            let objetoPropiedad= propiedad[i];
+            if(objetoPropiedad.tipo == valor){
+                arrayCasa[arrayCasa.length]=objetoPropiedad
+            }
+        }
+        return arrayCasa;
+    }
+
+    // Realiza una función permita modificar su estado de venta o alquiler.
+
+    export function cambiarEstado(valorEstado){
+        for(let i = 0; i < propiedad.length; i++){
+            let objetoPropiedad= propiedad[i];
+            if(objetoPropiedad.condicion.venta == false){
+                if(objetoPropiedad.estado == "disponible"){
+                    objetoPropiedad.estado = valorEstado;
+                }
+            }
+        }
+        return propiedad;
+    }
+
+    //Realiza una función que permita modificar su importe.
+
+    export function modificarImporte(valorImporte, valorEstado){
+        for(let i = 0; i < propiedad.length; i ++){
+            let objetoPropiedad= propiedad[i]
+            if(objetoPropiedad.estado == valorEstado){
+                objetoPropiedad.importe = valorImporte
+            }
+
+        }
+        return propiedad;
+    }
+
+    //Realiza una función que permita agregar tipo de moneda como dato a todas las propiedades y le asigne un valor por defecto.
+
+    export function agregarMoneda(){
+        
+        for(let i= 0; i < propiedad.length; i++){
+            let objetoPropiedad = propiedad[i];
+            objetoPropiedad.moneda ="pesos";
+        }
+        return propiedad;
+    }
+
+    //Realiza una función que calcule la suma de los valores de las propiedades alquiladas.
+
+    export function propiedadAlquilada(){
+        let sumaTotal=0;
+        for(let i = 0; i < propiedad.length; i++){
+            let variablePropiedad = propiedad[i]
+            if(variablePropiedad.estado == "alquilado" && variablePropiedad.condicion.alquiler === true){
+                
+                    console.log(variablePropiedad.estado)
+                    sumaTotal += variablePropiedad.importe;
+                
+                    
+                
+                
+                
+            }
+        }
+        return sumaTotal;
+    }
+
+    // Realiza una función que calcule la ganancia de comisión de las propiedades vendidas en un cierto mes.
+
+    export function comisionPropiedades(mes,comision){
+        let comisionTotal= 0;
+        let valorCasas =0;
+        
+        
+        for(let i = 0; i < propiedad.length; i++){
+            let propiedadVendida = propiedad[i]
+            let mesVenta = new Date(propiedadVendida.fechaAlquiler)
+            if(mesVenta.getMonth()+1 == mes && propiedadVendida.condicion.venta == true && propiedadVendida.estado =="vendido"){
+                valorCasas += propiedadVendida.importe
+                
+            }
+            
+        }
+        comisionTotal = (valorCasas * comision) /100;
+            
+        return comisionTotal;
+    }
 
 
 

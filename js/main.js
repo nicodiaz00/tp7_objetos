@@ -64,10 +64,17 @@ cuentasActivas(arrayDeObjetos);
 //import { cuentasActivas } from "./funciones.js";
 import { arrayDeObjetos } from "./objetos.js";
 //import { cuentasConPlazosFijosActivos } from "./funciones.js";
-import { descuentoPasajes,descuentoAUnPasaje,cuentaMayor,cuentasCorrientes,cuentaTipoMoneda,cuentaActiva,descuentoImporte,incrementarMonto,estadoPasaje,ordenarPasaje/*cuentasConplazoFijoActivo*/ } from "./funciones.js";
+import { categoriaYDisponibilidad,descuentoPasajes,descuentoAUnPasaje,cuentaMayor,cuentasCorrientes,cuentaTipoMoneda,cuentaActiva,descuentoImporte,incrementarMonto,estadoPasaje,ordenarPasaje/*cuentasConplazoFijoActivo*/ } from "./funciones.js";
 import { pasajes } from "./objetoPasaje.js";
-
-
+//PARTE BUTACAS
+import { distribucionButaca,butacasLibres,butacasOcupadas } from "./funciones.js";
+//PARTE  VEHICULOS
+import { marcaYModelo,anioFabricacion,autoSegunKilometraje,ingresarAuto } from "./funciones.js";
+//PARTE AULAS
+import { aulasDisponibles } from "./funciones.js";
+//PARTE PROPIEDADES
+import { propiedadCasa,cambiarEstado,modificarImporte,agregarMoneda,propiedadAlquilada,comisionPropiedades } from "./funciones.js";
+import { propiedad } from "./objetoPropiedades.js";
 
 let activo = "activo";
 let fecha = "2037-01-01"
@@ -111,5 +118,40 @@ let estado = "disponible"
 //console.log(descuentoAUnPasaje(20,0))
 
 //console.log(descuentoPasajes(50))
+let categoria1 ="primera";
+let disponibilidad = "disponible"
+let estadoOcupado = "alquilado"
+//console.log(descuentoAUnPasaje(50,2))
+//console.log(categoriaYDisponibilidad(categoria1,disponibilidad))
+//console.log(butacasLibres("libre"))
+//console.log(butacasOcupadas("ocupada"))
+//console.log(distribucionButaca("ocupada"))
+//console.log(marcaYModelo("Ford", "Focus"))
+//console.log(anioFabricacion(2020))
+//console.log(autoSegunKilometraje(10000))
+//console.log(ingresarAuto())
 
-console.log(descuentoAUnPasaje(50,2))
+//console.log(aulasDisponibles(30));
+
+let tipo ="casa";
+let estadopropiedad ="alquilado"
+let condicionVenta = true;
+let condicionAlquiler = false;
+let estadoPropiedad1 = "disponible";
+let importe= 99999;
+
+//console.log(propiedadCasa(tipo))
+//console.log(cambiarEstado(estadopropiedad));
+
+//console.log(modificarImporte(importe,estadoPropiedad1))
+
+//console.log(agregarMoneda())
+
+//console.log(propiedadAlquilada())
+
+//let fecha1 = new Date(propiedad[0].fechaAlquiler)
+
+//console.log(fecha1.getMonth())
+
+console.log(comisionPropiedades(4,20))
+
