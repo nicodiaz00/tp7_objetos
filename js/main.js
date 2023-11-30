@@ -75,6 +75,8 @@ import { aulasDisponibles } from "./funciones.js";
 //PARTE PROPIEDADES
 import { propiedadCasa,cambiarEstado,modificarImporte,agregarMoneda,propiedadAlquilada,comisionPropiedades } from "./funciones.js";
 import { propiedad } from "./objetoPropiedades.js";
+//PARTE COLECTIVOS
+import { lineaDisponible,valorButacas } from "./funciones.js";
 
 let activo = "activo";
 let fecha = "2037-01-01"
@@ -153,5 +155,9 @@ let importe= 99999;
 
 //console.log(fecha1.getMonth())
 
-console.log(comisionPropiedades(4,20))
+//console.log(comisionPropiedades(4,20))
+
+console.log(lineaDisponible())
+
+console.log(valorButacas())
 

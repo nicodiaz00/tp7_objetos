@@ -8,12 +8,12 @@ export const omnibus = [
             { numero: 2, estado: "ocupado", ubicacion: "ventanilla" },
             { numero: 3, estado: "libre", ubicacion: "pasillo" },
             ]
-    }
+    },
     {
         linea :"2",
         empresa:"viaTac",
         capacidad:40,
-        butacas= [
+        butacas: [
             {numero:1,estado:"ocupado",ubicacion:"ventanilla"},
             {numero:2,estado:"ocupado",ubicacion:"pasillo"},
             {numero:3,estado:"ocupado",ubicacion:"ventanilla"},

@@ -4,6 +4,7 @@ import { butacas } from "./objetoButacas.js";
 import { autos } from "./vehiculos.js";
 import { arrayAulas } from "./aulas.js";
 import { propiedad } from "./objetoPropiedades.js";
+import { omnibus } from "./colectivos.js";
 
 /*
 a) Realiza una función que devuelva todos las cuentas con plazos fijos activos a partir de una
@@ -590,4 +591,52 @@ export function aulasDisponibles(numeroAlumnos){
     }
 
 
+    //PARTE COLECTIVOS:
 
+    //Realiza una función que de una lista de las lineas que poseen butacas disponibles.
+
+    export function lineaDisponible(){
+        let lineasConButacaDisponible=[];
+        for(let i= 0; i < omnibus.length;i++){
+            let colectivo = omnibus[i];
+            let arrayButaca = colectivo.butacas;
+            for(let x = 0; x < arrayButaca.length; x++){
+                let butacaIndividual = arrayButaca[x]
+                if(butacaIndividual.estado =="libre"){
+                    lineasConButacaDisponible.push(colectivo.linea)
+                    break;
+                }
+            }
+        }
+        return lineasConButacaDisponible;
+    }
+
+    /*Realiza una función para poder asignarles valores a las butacas, las de adelante (hasta
+numero 15) saldrán 200, las del medio (del numero 16 al 30) vladrán 300 y las restantes
+saldrán 400.
+*/
+
+export function valorButacas(){
+    
+    for(let i = 0; i < omnibus.length; i++){
+        let colectivo = omnibus[i];
+        let arrayButacas = colectivo.butacas
+        for(let x = 0; x < arrayButacas.length; x++){
+            let numerbutaca = arrayButacas[x].numero;
+            if(numerbutaca > 0 && numerbutaca <= 15 ){
+                arrayButacas[x].valor = 200;
+            }else if(numerbutaca >15 && numerbutaca <=30 ){
+                arrayButacas[x].valor = 300;
+
+            }else if(numerbutaca >30){
+                arrayButacas[x].valor = 400;
+
+            }
+        }
+    }
+    return omnibus;
+}
+
+/* Teniendo en cuenta el inciso anterior. Realiza una función que devuelva el monto de la
+venta de butacas de una empresa y línea en particular.
+*/
